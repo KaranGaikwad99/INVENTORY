@@ -1,0 +1,96 @@
+{% extends 'inventorysystem/base.html' %}
+
+{% block content %}
+  <h1 class="page-header">Asset Entries</h1>
+  
+  <div class = "nav-tags">
+      
+    <form method="GET" action="" style="
+      float: right;
+      padding-right: 60px;">
+
+        <input type="text" placeholder="Search entries" name="q" value="{{ request.GET.q }}" style="
+          border-bottom-width: 2px;
+          margin-bottom: 0px;
+          padding-bottom: 0px;
+          margin-right: 0px;
+          margin-left: 0px;
+          height: 38px;
+          width: 210px;
+          padding-left: 8px;
+          border-left-width: 1px;
+        "/>
+        <input type="submit" class="btn btn-primary" value="Search" style="
+        width: 86px;
+        " />
+    </form>
+    <button class="btn btn-primary show-form" data-url="{% url 'entries_create' %}">
+      <span class="glyphicon glyphicon-plus"></span>
+      New Entries
+    </button>
+  
+    <input type="button" class="btn btn-primary" value="CSV" onclick="location.href='{% url 'export_csv'%}';"style="width: 75px;">
+    <input type="button" class="btn btn-primary" value="EXCEL" onclick="location.href='{% url 'export_excel'%}';"style="width: 75px;">
+    
+</div>
+  <table class="table" id="entries-table">
+    <thead>
+      <tr>
+        <th>Sr.</th>
+        <th>Type</th>
+        <th>Make</th>
+        <th>Model</th>
+        <!-- <th>Barcode</th>
+        <th>Serial Number</th>
+        <th>Service Number</th>
+        <th>Warranty</th>
+        <th>End Of Life Date</th> -->
+        <th>Work Station Name</th>
+        <th>Domain</th>
+        <!-- <th>Asset Owned By</th>
+        <th>Purchase Date</th>
+        <th>Acquisition Date</th>
+        <th>Return Date</th>
+        <th>Invoice Number</th> -->
+        <th>Status</th>
+        <th>Location</th>
+        <th>Desk Number</th>
+        <!-- <th>CPU</th>
+        <th>RAM</th>
+        <th>HDD</th>
+        <th>GPU</th> -->
+        <th>OS</th>
+        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          ACTIONS</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% include "inventorysystem/entries_list_2.html" %}
+    </tbody>
+  </table>
+  
+  <div class="pagination">
+    <span class="step-links">
+        {% if entriess.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ entriess.previous_page_number }}&q={{request.GET.q}}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ entriess.number }} of {{ entriess.paginator.num_pages }}.
+        </span>
+
+        {% if entriess.has_next %}
+            <a href="?page={{ entriess.next_page_number }}&q={{request.GET.q}}">next</a>
+            <a href="?page={{ entriess.paginator.num_pages }}&q={{request.GET.q}} ">last &raquo;</a>
+        {% endif %}
+    </span>
+  </div>
+
+
+  <div class="modal fade" id="modal-entries">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+{% endblock %}

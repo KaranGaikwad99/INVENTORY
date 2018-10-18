@@ -1,0 +1,44 @@
+{% for entries in entriess %}
+  <tr>
+    <td> {{forloop.counter}} </td>
+    
+    <td>{{ entries.machine_type }}</td>
+    <td>{{ entries.machine_make }}</td>
+    <td>{{ entries.machine_model }}</td>
+    <!-- <td>{{ entries.machine_barcode }}</td>
+    <td>{{ entries.machine_serial_number }}</td>
+    <td>{{ entries.machine_service_number }}</td>
+    <td>{{ entries.machine_warranty }}</td>
+    <td>{{ entries.machine_endoflife }}</td> -->
+    <td>{{ entries.machine_workstation_name }}</td>
+    <td>{{ entries.machine_domain }}</td>
+    <!-- <td>{{ entries.machine_asset_owned_by }}</td>
+    <td>{{ entries.machine_purchase_date }}</td>
+    <td>{{ entries.machine_acquisition_date }}</td>
+    <td>{{ entries.machine_return_date }}</td>
+    <td>{{ entries.machine_invoice_number }}</td> -->
+    <td>{{ entries.machine_status }}</td>
+    <td>{{ entries.machine_location }}</td>
+    <td>{{ entries.machine_desk_number }}</td>
+    <!-- <td>{{ entries.machine_cpu }}</td>
+    <td>{{ entries.machine_ram }}</td>
+    <td>{{ entries.machine_hdd }}</td>
+    <td>{{ entries.machine_gpu }}</td> -->
+    <td>{{ entries.machine_os }}</td>
+    <td>  
+      <button class="btn btn-warning show-form-update" data-url="{% url 'entries_update' entries.id %}">
+      <span class="glyphicon glyphicon-pencil"></span>
+      Edit 
+      </button>
+      &nbsp;&nbsp;&nbsp;
+      <button class="btn btn-danger show-form-delete" data-url="{% url 'entries_delete' entries.id %}">
+      <span class="glyphicon glyphicon-trash"></span>
+      Delete 
+      </button>
+    </td>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="11" class="text-center bg-warning">No entries</td>
+  </tr>
+{% endfor %}

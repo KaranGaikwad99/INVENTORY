@@ -1,0 +1,156 @@
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+
+<!DOCTYPE html>
+
+<html lang="en" >
+<head>
+	<title>Log in | Django site admin</title>
+	<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" />
+	<link rel="stylesheet" type="text/css" href="/static/admin/css/login.css" />
+	<meta name="robots" content="NONE,NOARCHIVE" />
+
+<style>
+	body.login {
+    background: #f8f8f8;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+    color: #333;
+    background: #fff;
+}
+body {
+    display: block;
+    
+}
+.login #container {
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 28em;
+    min-width: 300px;
+    margin: 100px auto;
+}
+#container {
+    position: relative;
+    width: 100%;
+    min-width: 980px;
+    padding: 0;
+}
+div {
+    display: block;
+}
+.login #header {
+    height: auto;
+    padding: 5px 16px;
+	background: #444546;
+}
+.login #header h1{
+	font-size: 18px;
+    margin-left: 150px;
+    margin-right: 155px;
+}
+#header {
+    width: auto;
+    height: 40px;
+    padding: 10px 40px;
+    
+    line-height: 40px;
+    color: #ffc;
+    overflow: hidden;
+}
+#branding {
+    float: left;
+}
+.login #content {
+    padding: 20px 20px 0;
+}
+#footer {
+    clear: both;
+    padding: 10px;
+}
+
+.btn {
+    /* background: #79aec8; */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    background: #666;
+
+    border-left-width: 0px;
+    padding-left: 15px;
+    margin-left: 140px;
+    margin-top: 25px;
+    margin-right: 150px;
+    margin-bottom: 10px;
+
+}
+#site-name{
+	margin-left: 150px;
+    margin-right: 155px;
+}
+
+</style>	
+</head>
+
+<body class=" login" data-admin-utc-offset="0">
+	<!-- Container -->
+	<div id="container">
+	<!-- Header -->
+		<div id="header">
+			<div id="branding">
+				<h1 id="site-name"><a href="/admin/">LOGIN</a></h1>
+			</div>
+		</div>
+	<!-- END Header -->
+	<!-- Content -->
+		<div id="content" class="colM">
+		<div id="content-main">
+			<form class="form floating-label" id="login-form" action="{% url 'login' %}" accept-charset="utf-8" method="post">
+					{% csrf_token %}
+					
+
+					{% if form.errors %}
+						<div class="alert alert-danger">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							<strong>Error!</strong> Your username and password didn't match. Please try again.
+						</div>
+					{% endif %}
+
+					<div class="form-row">
+						<label for="username" label class="required">Username: </label>{{ form.username|add_class:"form-control" }}
+					</div>
+					<div class="form-row">
+						<label for="password" class="required">Password: </label>&nbsp;{{ form.password|add_class:"form-control" }}
+					</div>
+					<div class="row">
+							<div class="col-xs-6 text-left">
+
+							</div><!--end .col -->
+							<div class="col-xs-6 text-right">
+								<button class="btn btn-primary btn-raised" type="submit">Login</button>
+							</div><!--end .col -->
+						</div><!--end .row -->
+			</form>
+			
+
+
+
+		</div>
+		<br class="clear" />
+		</div>
+		<!-- END Content -->
+
+		<div id="footer"></div>
+	</div>
+	<!-- END Container -->
+
+</body>
+</html>
